@@ -5,11 +5,12 @@
 # Customs
 macos-icon = custom
 macos-custom-icon = ~/.config/ghostty/icons/Ghostty_Light.icns
-# custom-shader = ./shaders/ghostty-cursor-shaders/cursor_tail.glsl
+custom-shader = ./shaders/ghostty-cursor-shaders/cursor_tail.glsl
 
 # Theme & Background
-theme = Catppuccin Mocha
-background-opacity = 0.98
+theme = Rose Pine Dawn
+# theme = Catppuccin Mocha
+background-opacity = 0.95
 background-blur = 10
 
 # Fonts
@@ -18,7 +19,7 @@ font-family = "Maple Mono NF CN"
 font-style = Bold
 font-size = 14
 # font-thicken = true
-adjust-cell-height = 15%
+adjust-cell-height = 20%
 # adjust-cell-width = 3%
 
 # Windows

@@ -3,12 +3,16 @@
 # since 2024 2025 2026
 
 # Cute startup greeting.
+# Rosé Pine hexes are baked in: the greeting is printed before fish resolves
+# fish_terminal_color_theme, so it cannot follow the light/dark theme variant.
+# rose/iris/love were picked to stay legible on both Dawn and the night base.
 function _fish_greeting
-    set -l pink (set_color --bold magenta)
-    set -l blue (set_color 89B4FA)
+    set -l rose (set_color --bold d7827e)
+    set -l iris (set_color 907aa9)
+    set -l love (set_color b4637a)
     set -l off (set_color normal)
-    printf '%sNyaa~ %sterminal ready! %s(^._.^)~%s <3\n' \
-        $pink $blue $pink $off
+    printf '%sNyaa~ %sterminal ready! %s(^._.^)~ %s<3%s\n' \
+        $rose $iris $rose $love $off
 end
 set -g fish_greeting (_fish_greeting)
 
@@ -42,8 +46,8 @@ set -gx FZF_DEFAULT_OPTS "--height=40% --layout=reverse --border --cycle --previ
 # Keep non-interactive shells lightweight.
 status is-interactive; or return
 
-# Theme.
-fish_config theme choose fippuccin
+# Theme (Rosé Pine Dawn on light terminals, Rosé Pine on dark).
+fish_config theme choose rosepine
 
 # Directory listing aliases.
 if command -q eza
@@ -96,6 +100,3 @@ end
 set --export BUN_INSTALL "$HOME/.bun"
 set --export PATH $BUN_INSTALL/bin $PATH
 
-# >>> grok installer >>>
-fish_add_path $HOME/.grok/bin
-# <<< grok installer <<<

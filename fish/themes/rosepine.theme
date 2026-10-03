@@ -1,0 +1,101 @@
+# name: Rosé Pine
+# based on: Rosé Pine Dawn (light) / Rosé Pine (dark), fish default roles
+# url: https://rosepinetheme.com/palette/
+
+# Roles are mapped by accent hue, ranked by WCAG contrast against the variant
+# background where a hue had to be swapped (see the command/redirection notes).
+
+[light]
+# preferred_background: faf4ed
+fish_color_normal 464261
+fish_color_param 464261
+fish_color_autosuggestion 9893a5
+fish_color_comment 797593
+fish_color_command 286983
+fish_color_keyword 907aa9
+fish_color_operator 797593
+fish_color_redirection d7827e --bold
+fish_color_end d7827e
+fish_color_quote ea9d34
+fish_color_option ea9d34
+fish_color_escape 56949f
+fish_color_error b4637a
+fish_color_cancel b4637a
+fish_color_status b4637a
+fish_color_cwd 907aa9
+fish_color_cwd_root b4637a
+fish_color_user 56949f
+fish_color_host 286983
+fish_color_host_remote 56949f
+fish_color_valid_path 286983 --underline
+fish_color_history_current 464261 --bold
+fish_color_selection 464261 --background=dfdad9 --bold
+fish_color_search_match 464261 --background=dfdad9 --bold
+fish_pager_color_description ea9d34 --italics
+fish_pager_color_prefix --bold --underline
+fish_pager_color_progress 464261 --background=dfdad9 --bold
+fish_pager_color_selected_background -r
+
+[dark]
+# preferred_background: 191724
+fish_color_normal e0def4
+fish_color_param e0def4
+fish_color_autosuggestion 6e6a86
+fish_color_comment 908caa
+# pine 31748f is only 3.4:1 on the night base, so commands use foam instead.
+fish_color_command 9ccfd8
+fish_color_keyword c4a7e7
+fish_color_operator 908caa
+fish_color_redirection ebbcba --bold
+fish_color_end ebbcba
+fish_color_quote f6c177
+fish_color_option f6c177
+fish_color_escape 9ccfd8
+fish_color_error eb6f92
+fish_color_cancel eb6f92
+fish_color_status eb6f92
+fish_color_cwd c4a7e7
+fish_color_cwd_root eb6f92
+fish_color_user 9ccfd8
+fish_color_host 31748f
+fish_color_host_remote 9ccfd8
+fish_color_valid_path 9ccfd8 --underline
+fish_color_history_current e0def4 --bold
+fish_color_selection e0def4 --background=403d52 --bold
+fish_color_search_match e0def4 --background=403d52 --bold
+fish_pager_color_description f6c177 --italics
+fish_pager_color_prefix --bold --underline
+fish_pager_color_progress e0def4 --background=403d52 --bold
+fish_pager_color_selected_background -r
+
+# Terminals that don't report light/dark get Dawn.
+[unknown]
+# preferred_background: faf4ed
+fish_color_normal 464261
+fish_color_param 464261
+fish_color_autosuggestion 9893a5
+fish_color_comment 797593
+fish_color_command 286983
+fish_color_keyword 907aa9
+fish_color_operator 797593
+fish_color_redirection d7827e --bold
+fish_color_end d7827e
+fish_color_quote ea9d34
+fish_color_option ea9d34
+fish_color_escape 56949f
+fish_color_error b4637a
+fish_color_cancel b4637a
+fish_color_status b4637a
+fish_color_cwd 907aa9
+fish_color_cwd_root b4637a
+fish_color_user 56949f
+fish_color_host 286983
+fish_color_host_remote 56949f
+fish_color_valid_path 286983 --underline
+fish_color_history_current 464261 --bold
+fish_color_selection 464261 --background=dfdad9 --bold
+fish_color_search_match 464261 --background=dfdad9 --bold
+fish_pager_color_description ea9d34 --italics
+fish_pager_color_prefix --bold --underline
+fish_pager_color_progress 464261 --background=dfdad9 --bold
+fish_pager_color_selected_background -r
