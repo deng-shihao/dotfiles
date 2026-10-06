@@ -15,16 +15,26 @@ local colored_fts = {
   'typescriptreact',
 }
 
-return {
-  {
-    'brenoprata10/nvim-highlight-colors',
-    ft = colored_fts,
-    keys = {
-      { ',c', '<cmd>HighlightColors Toggle<cr>', silent = true, desc = 'Toggle colorizer' },
-    },
-    opts = {
-      render = 'virtual',
-      virtual_symbol = '󱓻',
-    },
-  },
-}
+local configured = false
+local function setup()
+  if configured then
+    return
+  end
+  require('nvim-highlight-colors').setup {
+    render = 'virtual',
+    virtual_symbol = '󱓻',
+  }
+  configured = true
+end
+
+vim.api.nvim_create_autocmd('FileType', {
+  group = vim.api.nvim_create_augroup('config_highlight_colors', { clear = true }),
+  pattern = colored_fts,
+  once = true,
+  callback = setup,
+})
+
+vim.keymap.set('n', ',c', function()
+  setup()
+  vim.cmd.HighlightColors 'Toggle'
+end, { silent = true, desc = 'Toggle colorizer' })

@@ -3,6 +3,10 @@ local icons = require 'config.icons'
 local M = {}
 local formatter_cache = {}
 
+function M.escape_statusline(text)
+  return text:gsub('%%', '%%%%')
+end
+
 function M.buf_option(bufnr, name)
   return vim.api.nvim_get_option_value(name, { buf = bufnr or 0 })
 end

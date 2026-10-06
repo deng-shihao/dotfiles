@@ -16,7 +16,7 @@ M.Git = {
   hl = { fg = 'git_branch' },
   {
     provider = function(self)
-      return icons.git.Branch .. ' ' .. self.status_dict.head .. (self.has_changes and icons.git.Dirty or '')
+      return icons.git.Branch .. ' ' .. helpers.escape_statusline(self.status_dict.head) .. (self.has_changes and icons.git.Dirty or '')
     end,
   },
   {

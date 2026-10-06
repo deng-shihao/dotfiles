@@ -9,8 +9,7 @@ custom-shader = ./shaders/ghostty-cursor-shaders/cursor_tail.glsl
 
 # Theme & Background
 theme = Rose Pine Dawn
-# theme = Catppuccin Mocha
-background-opacity = 0.95
+background-opacity = 0.80
 background-blur = 10
 
 # Fonts

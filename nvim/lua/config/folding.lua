@@ -14,22 +14,44 @@ vim.opt.fillchars = {
 }
 vim.o.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
 
--- Upgrade to LSP folding when server supports it
-vim.api.nvim_create_autocmd('LspAttach', {
+local group = vim.api.nvim_create_augroup('config_folding', { clear = true })
+
+local function update_folding(bufnr)
+  local clients = vim.lsp.get_clients { bufnr = bufnr, method = 'textDocument/foldingRange' }
+  local expr = #clients > 0 and 'v:lua.vim.lsp.foldexpr()' or 'v:lua.vim.treesitter.foldexpr()'
+  for _, win in ipairs(vim.fn.win_findbuf(bufnr)) do
+    vim.wo[win].foldexpr = expr
+  end
+end
+
+vim.api.nvim_create_autocmd({ 'LspAttach', 'BufWinEnter' }, {
+  group = group,
+  desc = 'Select folding for the displayed buffer',
   callback = function(ev)
-    local client = vim.lsp.get_client_by_id(ev.data.client_id)
-    if client and client:supports_method 'textDocument/foldingRange' then
-      local win = vim.api.nvim_get_current_win()
-      vim.wo[win].foldexpr = 'v:lua.vim.lsp.foldexpr()'
-    end
+    update_folding(ev.buf)
+  end,
+})
+
+vim.api.nvim_create_autocmd('LspDetach', {
+  group = group,
+  desc = 'Restore folding after the client detaches',
+  callback = function(ev)
+    -- LspDetach runs before the client leaves the buffer's client list.
+    vim.schedule(function()
+      if vim.api.nvim_buf_is_valid(ev.buf) then
+        update_folding(ev.buf)
+      end
+    end)
   end,
 })
 
 local function fold_virt_text(result, start_text, lnum)
-  local text = ''
+  local text = {}
   local hl
-  for i = 1, #start_text do
-    local char = start_text:sub(i, i)
+  local i = 1
+  while i <= #start_text do
+    local last = i + vim.str_utf_end(start_text, i)
+    local char = start_text:sub(i, last)
     local new_hl
 
     -- if semantic tokens unavailable, use treesitter hl
@@ -43,23 +65,26 @@ local function fold_virt_text(result, start_text, lnum)
       end
     end
 
-    if new_hl then
-      if new_hl ~= hl then
-        -- as soon as new hl appears, push substring with current hl to table
-        table.insert(result, { text, hl })
-        text = ''
-        hl = nil
+    if new_hl ~= hl then
+      if #text > 0 then
+        table.insert(result, { table.concat(text), hl })
       end
-      text = text .. char
+      text = {}
       hl = new_hl
-    else
-      text = text .. char
     end
+    if char == '\t' then
+      local prefix = vim.fn.strdisplaywidth(start_text:sub(1, i - 1))
+      char = string.rep(' ', vim.fn.strdisplaywidth('\t', prefix))
+    end
+    text[#text + 1] = char
+    i = last + 1
   end
-  table.insert(result, { text, hl })
+  if #text > 0 then
+    table.insert(result, { table.concat(text), hl })
+  end
 end
 function _G.custom_foldtext()
-  local start_text = vim.fn.getline(vim.v.foldstart):gsub('\t', string.rep(' ', vim.o.tabstop))
+  local start_text = vim.fn.getline(vim.v.foldstart)
   local nline = vim.v.foldend - vim.v.foldstart + 1
   local result = {}
   fold_virt_text(result, start_text, vim.v.foldstart - 1)

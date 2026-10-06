@@ -1,27 +1,13 @@
 local severity = vim.diagnostic.severity
 
-local capabilities = {
-  textDocument = {
-    semanticTokens = {
-      multilineTokenSupport = true,
-    },
-  },
-}
-
-local ok, blink = pcall(require, 'blink.cmp')
-if ok then
-  capabilities = blink.get_lsp_capabilities(capabilities, true)
-end
-
 vim.lsp.config('*', {
-  capabilities = capabilities,
+  capabilities = require('blink.cmp').get_lsp_capabilities(nil, true),
 })
 
 vim.lsp.enable {
   'lua_ls',
   'clangd',
   'basedpyright',
-  'jdtls',
   'marksman',
   'ruff',
   'cmake',

@@ -38,7 +38,7 @@ M.dashboard = {
   Config = { icon = '󰒓 ', hl = 'icon' },
   RestoreSession = { icon = '󰦛 ', hl = 'icon' },
   Mason = { icon = '󰏗 ', hl = 'icon' },
-  Lazy = { icon = '󰒲 ', hl = 'icon' },
+  Packages = { icon = '󰒲 ', hl = 'icon' },
   Quit = { icon = '󰗼 ', hl = 'icon' },
 }
 

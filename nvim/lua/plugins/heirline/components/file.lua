@@ -5,7 +5,7 @@ local M = {}
 
 M.FileType = {
   provider = function()
-    return vim.bo.filetype
+    return helpers.escape_statusline(vim.bo.filetype)
   end,
   hl = { fg = 'type', bold = true },
 }
@@ -31,16 +31,16 @@ M.FileName = {
   end,
   provider = function(self)
     if self.filename ~= '' then
-      return vim.fn.fnamemodify(self.filename, ':t')
+      return helpers.escape_statusline(vim.fn.fnamemodify(self.filename, ':t'))
     end
 
     local filetype = helpers.buf_option(self.bufnr, 'filetype')
     if filetype ~= '' then
-      return filetype
+      return helpers.escape_statusline(filetype)
     end
 
     local buftype = helpers.buf_option(self.bufnr, 'buftype')
-    return buftype ~= '' and buftype or '[No Name]'
+    return helpers.escape_statusline(buftype ~= '' and buftype or '[No Name]')
   end,
   hl = function(self)
     return { fg = 'fg', bold = self.is_modified }

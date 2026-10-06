@@ -1,36 +1,28 @@
 -- Collection of various small independent plugins/modules
-return {
-  'nvim-mini/mini.nvim',
-  event = 'VeryLazy',
-  config = function()
-    -- mini.surround
-    require('mini.surround').setup {}
+require('mini.surround').setup {}
 
-    -- mini.icons
-    require('mini.icons').setup {
-      style = 'glyph',
+require('mini.icons').setup {
+  style = 'glyph',
 
-      file = {
-        README = { glyph = '', hl = 'MiniIconsYellow' },
-        ['README.md'] = { glyph = '', hl = 'MiniIconsYellow' },
-        ['README.txt'] = { glyph = '', hl = 'MiniIconsYellow' },
-      },
+  file = {
+    README = { glyph = '', hl = 'MiniIconsYellow' },
+    ['README.md'] = { glyph = '', hl = 'MiniIconsYellow' },
+    ['README.txt'] = { glyph = '', hl = 'MiniIconsYellow' },
+  },
 
-      filetype = {
-        dotenv = { glyph = '', hl = 'MiniIconsYellow' },
-        bash = { glyph = '󱆃', hl = 'MiniIconsGreen' },
-        sh = { glyph = '󱆃', hl = 'MiniIconsGrey' },
-        toml = { glyph = '󱄽', hl = 'MiniIconsOrange' },
-      },
-    }
+  filetype = {
+    dotenv = { glyph = '', hl = 'MiniIconsYellow' },
+    bash = { glyph = '󱆃', hl = 'MiniIconsGreen' },
+    sh = { glyph = '󱆃', hl = 'MiniIconsGrey' },
+    toml = { glyph = '󱄽', hl = 'MiniIconsOrange' },
+  },
+}
 
-    require('mini.tabline').setup {
-      show_icons = true,
-      format = function(buf_id, label)
-        local MiniTabline = require('mini.tabline').default_format(buf_id, label)
-        return string.format(' %s ', MiniTabline)
-      end,
-    }
+require('mini.tabline').setup {
+  show_icons = true,
+  format = function(buf_id, label)
+    local MiniTabline = require('mini.tabline').default_format(buf_id, label)
+    return string.format(' %s ', MiniTabline)
   end,
 }
 

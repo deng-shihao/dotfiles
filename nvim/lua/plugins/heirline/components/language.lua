@@ -13,7 +13,7 @@ M.LSPActive = {
       names[#names + 1] = server.name
     end
     table.sort(names)
-    return icons.status.Lsp .. ' ' .. table.concat(names, ' ') .. ' '
+    return icons.status.Lsp .. ' ' .. helpers.escape_statusline(table.concat(names, ' ')) .. ' '
   end,
   hl = { fg = 'green', bold = true },
   on_click = {
@@ -33,7 +33,7 @@ M.Formatters = {
   update = { 'BufEnter', 'FileType', 'LspAttach', 'LspDetach' },
   provider = function()
     local labels = helpers.formatter_labels()
-    return #labels > 0 and ('󰉢 ' .. table.concat(labels, ',')) or ''
+    return #labels > 0 and ('󰉢 ' .. helpers.escape_statusline(table.concat(labels, ','))) or ''
   end,
   hl = { fg = 'dim' },
   on_click = {

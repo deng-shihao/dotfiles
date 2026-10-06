@@ -1,6 +1,1 @@
--- autopairs
-return {
-  'windwp/nvim-autopairs',
-  event = 'VeryLazy',
-  opts = {},
-}
+require('nvim-autopairs').setup {}

@@ -17,6 +17,9 @@ M.SearchOccurrence = {
   update = { 'CursorMoved', 'CmdlineLeave' },
   provider = function()
     local sinfo = vim.fn.searchcount { maxcount = 0 }
+    if sinfo.total == nil then
+      return ''
+    end
     if sinfo.incomplete > 0 then
       return icons.status.Search .. ' [?/?]'
     end
