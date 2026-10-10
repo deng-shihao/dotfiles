@@ -1,57 +1,51 @@
 # Dotfiles
 
-Personal configuration files for my macOS development environment.
-All tools share a consistent **Catppuccin Mocha** dark theme.
+Personal configuration files for a terminal-centric macOS development environment, unified around the **Rosé Pine** palette.
 
 ## Structure
 
-```
+```text
 .config/
-├── bash/           # Bash shell configuration
-├── btop/           # System resource monitor
-├── fish/           # Fish shell with fzf, zoxide, fisher
-├── ghostty/        # GPU-accelerated terminal + GLSL cursor shaders
-├── git/            # Global git ignore rules
-├── karabiner/      # macOS keyboard remapping (Ctrl+hjkl → arrows)
-├── nvim/           # Neovim (primary editor)
+├── bash/           # Fallback shell
+├── btop/           # System monitor
+├── fish/           # Primary shell
+├── ghostty/        # Terminal emulator
+├── karabiner/      # Key remapper
+├── nvim/           # Primary editor
 ├── tmux/           # Terminal multiplexer
-├── yazi/           # Terminal file manager
-├── zed/            # Zed editor configuration
-├── zsh/            # Z shell with zinit, fzf, zoxide, starship
-└── starship.toml   # Cross-shell prompt (Catppuccin Mocha)
+├── yazi/           # File manager
+├── zsh/            # Secondary shell
+└── starship.toml   # Cross-shell prompt
 ```
 
 ## Environment
 
-| Tool | Role | Highlights |
-|------|------|------------|
-| **Neovim** | Primary editor | lazy.nvim, 9 LSP servers, blink.cmp, snacks.nvim (dashboard/keys/toggles), heirline statusline, flash, oil, gitsigns, telescope |
-| **Zed** | Secondary editor | vim mode, opencode agent, codex-acp, claude-acp |
-| **Ghostty** | Terminal emulator | 0.85 opacity, hidden titlebar, 4 custom GLSL cursor shaders (sweep/tail/warp/ripple) |
-| **tmux** | Terminal multiplexer | `` ` `` prefix, vi keys, Catppuccin Mocha status bar, allow-passthrough for Yazi images |
-| **Fish** | Daily shell | Vi-mode, fzf integration, zoxide, fippuccin theme, custom greeting |
-| **Zsh** | Fallback shell | zinit, fast-syntax-highlighting, zsh-autosuggestions, fzf-tab, zoxide |
-| **Bash** | Compatibility | Vi-mode, custom prompt, dircolors |
-| **Karabiner** | Keyboard customizer | Ctrl+h/j/k/l → arrow keys (system-wide) |
-| **Yazi** | File manager | Catppuccin Mocha flavor, image preview |
-| **btop** | System monitor | Transparent background, vim-style keys |
+| Tool | Highlights |
+|------|------------|
+| **Neovim** | Native `vim.pack` and `vim.lsp.config` (0.12+), `blink.cmp`, `snacks.nvim`, `heirline`, `oil`, `flash`, `conform`, and `nvim-dap` |
+| **Ghostty** | `0.88` background opacity with blur, hidden titlebar, custom app icon, and GLSL cursor shaders |
+| **tmux** | Vi copy-mode, live CPU/RAM/GPU status line, Yazi image passthrough, and `sessionx` / `floax` popups |
+| **Fish** | `fzf` and `zoxide` integration, `eza` aliases, and custom greeting |
+| **Zsh** | Zinit turbo mode with `fast-syntax-highlighting`, `zsh-autosuggestions`, and `fzf-tab` |
+| **Bash** | Vi-mode line editing, `fzf` integration, and shared aliases |
+| **Starship** | Single-line prompt displaying Git status metrics and runtime versions |
+| **Yazi** | Transparent background passthrough and inline image previews |
+| **btop** | Transparent TTY theme with Vim-style navigation keys |
 
 ## Fonts
 
-- **JetBrains Mono** — Primary coding font
-- **Maple Mono NF CN** — CJK / icon fallback
+- **Berkeley Mono Variable** — Primary coding font
+- **Maple Mono NF CN** — CJK and Nerd Font glyph fallback
 
 ## Key Bindings
 
-All shells use **Vi-mode**. System-wide:
-
 | Key | Action |
 |-----|--------|
-| `Ctrl-h/j/k/l` | Arrow keys (via Karabiner) |
-| `Ctrl-p / Ctrl-n` | History search |
-| `Alt-h / Alt-l` | Move word left/right |
-| `Ctrl-a / Ctrl-e` | Line start/end |
-| `` ` `` | tmux prefix |
+| `Ctrl-h / j / k / l` | System-wide arrow keys (via Karabiner) |
+| `Ctrl-p / Ctrl-n` | Navigate backward / forward in shell history |
+| `Ctrl-a / Ctrl-e` | Jump to the start / end of the command line |
+| `Alt-w` | Cut active selection in Fish and Zsh |
+| `Ctrl-s` | tmux prefix |
 
 ## Installation
 
@@ -59,5 +53,4 @@ All shells use **Vi-mode**. System-wide:
 git clone https://github.com/D1376/dotfiles.git ~/.config
 ```
 
-Nvim plugins, LSP servers, tmux plugins, and shell completions may need
-additional setup — refer to each directory for its requirements.
+Plugin managers, LSP servers, and shell integrations are bootstrapped per tool—see each directory for details.
